@@ -22,8 +22,9 @@ func main() {
 	fs := http.FileServer(http.Dir("web"))
 	http.Handle("/", fs)
 
-	// API Endpoint for compression
+	// API Endpoints
 	http.HandleFunc("/api/v1/compress", handleCompress)
+	http.HandleFunc("/api/v1/decompress", handleDecompress)
 
 	fmt.Printf("🚀 Karakorum Web API is running on http://localhost:%s\n", port)
 	if err := http.ListenAndServe(":"+port, nil); err != nil {
@@ -102,4 +103,61 @@ func handleCompress(w http.ResponseWriter, r *http.Request) {
 
 	// Write the compressed binary data back to the user
 	io.Copy(w, bytes.NewReader(compressed))
+}
+
+func handleDecompress(w http.ResponseWriter, r *http.Request) {
+	// CORS Headers
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	if r.Method == http.MethodOptions {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+	if r.Method != http.MethodPost {
+		http.Error(w, "Only POST method is allowed", http.StatusMethodNotAllowed)
+		return
+	}
+
+	// 100 MB max upload
+	err := r.ParseMultipartForm(100 << 20)
+	if err != nil {
+		http.Error(w, "Failed to parse form: "+err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	file, header, err := r.FormFile("file")
+	if err != nil {
+		http.Error(w, "File is required", http.StatusBadRequest)
+		return
+	}
+	defer file.Close()
+
+	// Read compressed file into memory
+	data, err := io.ReadAll(file)
+	if err != nil {
+		http.Error(w, "Failed to read file", http.StatusInternalServerError)
+		return
+	}
+
+	// Decompress using Karakorum Engine
+	decompressed, stats, err := compressor.Decompress(data)
+	if err != nil {
+		http.Error(w, "Decompression failed: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Figure out original filename by stripping .kuc if present
+	origFilename := header.Filename
+	if len(origFilename) > 4 && origFilename[len(origFilename)-4:] == ".kuc" {
+		origFilename = origFilename[:len(origFilename)-4]
+	} else {
+		origFilename = "decompressed_" + origFilename
+	}
+
+	// Send back decompressed file with stats in headers
+	w.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s", origFilename))
+	w.Header().Set("Content-Type", "application/octet-stream")
+	w.Header().Set("X-Original-Size", fmt.Sprintf("%d", stats.OriginalSize))
+	w.Header().Set("X-Decompression-Duration-Ms", fmt.Sprintf("%d", stats.Duration.Milliseconds()))
+
+	w.Write(decompressed)
 }

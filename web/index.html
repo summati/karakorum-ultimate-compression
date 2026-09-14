@@ -296,25 +296,51 @@
             formData.append('file', file);
 
             try {
-                const response = await fetch('/api/v1/compress', { method: 'POST', body: formData });
-                if (!response.ok) throw new Error(await response.text());
+                const isDecompress = file.name.endsWith('.kuc');
+                const endpoint = isDecompress ? '/api/v1/decompress' : '/api/v1/compress';
+                spinner.innerText = isDecompress ? 'Decompressing in Memory...' : 'Compressing in Memory...';
 
-                const orig = response.headers.get('X-Original-Size');
-                const comp = response.headers.get('X-Compressed-Size');
-                const ratio = response.headers.get('X-Compression-Ratio');
-                const saved = response.headers.get('X-Space-Saved-Pct');
+                const response = await fetch(endpoint, { method: 'POST', body: formData });
+                if (!response.ok) throw new Error(await response.text());
 
                 const blob = await response.blob();
                 const downloadUrl = URL.createObjectURL(blob);
-
-                document.getElementById('val-orig').innerText = formatBytes(orig);
-                document.getElementById('val-comp').innerText = formatBytes(comp);
-                document.getElementById('val-ratio').innerText = ratio + 'x';
-                document.getElementById('val-saved').innerText = saved + '%';
-                
                 const dlBtn = document.getElementById('download-btn');
+                
+                let outFilename = "";
+
+                if (isDecompress) {
+                    // Hide compression stats, show just success
+                    document.querySelector('.stat-grid').style.display = 'none';
+                    document.querySelector('#results h3').innerText = '✅ Decompression Successful';
+                    dlBtn.innerText = 'Download Restored File';
+                    
+                    // Try to extract original filename from content-disposition header if available
+                    const contentDisp = response.headers.get('Content-Disposition');
+                    if (contentDisp && contentDisp.includes('filename=')) {
+                        outFilename = contentDisp.split('filename=')[1].replace(/"/g, '');
+                    } else {
+                        outFilename = file.name.replace('.kuc', '');
+                    }
+                } else {
+                    document.querySelector('.stat-grid').style.display = 'grid';
+                    document.querySelector('#results h3').innerText = '✅ Compression Successful';
+                    dlBtn.innerText = 'Download .kuc File';
+                    outFilename = file.name + '.kuc';
+
+                    const orig = response.headers.get('X-Original-Size');
+                    const comp = response.headers.get('X-Compressed-Size');
+                    const ratio = response.headers.get('X-Compression-Ratio');
+                    const saved = response.headers.get('X-Space-Saved-Pct');
+
+                    document.getElementById('val-orig').innerText = formatBytes(orig);
+                    document.getElementById('val-comp').innerText = formatBytes(comp);
+                    document.getElementById('val-ratio').innerText = ratio + 'x';
+                    document.getElementById('val-saved').innerText = saved + '%';
+                }
+                
                 dlBtn.href = downloadUrl;
-                dlBtn.download = file.name + '.kuc';
+                dlBtn.download = outFilename;
 
                 results.style.display = 'block';
             } catch (err) {
