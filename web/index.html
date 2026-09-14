@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karakorum Ultimate Compression — Free Online File Compressor</title>
-    <meta name="description" content="Compress your files instantly with Karakorum. Up to 3500x ratio, lossless compression in your browser. Powered by pure Go.">
+    <title>Karakorum — Premium File Compression Engine</title>
+    <meta name="description" content="State-of-the-art lossless file compression powered by Go. Up to 3500x ratio. Fast, secure, and entirely offline.">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400&display=swap');
 
         :root {
-            --bg: #09090b;
-            --surface: #18181b;
-            --border: #27272a;
-            --text: #f4f4f5;
-            --text-muted: #a1a1aa;
+            --bg: #030305;
+            --surface: #0a0a0f;
+            --surface-hover: #13131c;
+            --border: #1f1f2e;
+            --text: #ffffff;
+            --text-muted: #8b8b9c;
             --primary: #3b82f6;
-            --primary-hover: #2563eb;
+            --primary-glow: rgba(59, 130, 246, 0.5);
+            --accent: #8b5cf6;
+            --success: #10b981;
             --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --font-sans: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
         * {
@@ -26,249 +31,355 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.5;
-            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
             display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            padding: 2rem;
-            text-align: center;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(3, 3, 5, 0.7);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
-            background: var(--surface);
+            z-index: 100;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .nav-brand img {
+            height: 40px;
+            border-radius: 8px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--text);
         }
 
-        h1 {
-            font-size: 2.5rem;
+        /* Hero Section */
+        .hero {
+            padding: 10rem 2rem 5rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
             font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
         }
-
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 3rem 1rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        /* Ad Slots */
-        .ad-slot {
-            width: 100%;
-            max-width: 728px;
-            height: 90px;
-            background: var(--surface);
-            border: 1px dashed var(--border);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .hero p {
+            font-size: 1.25rem;
             color: var(--text-muted);
-            font-size: 0.875rem;
-            margin: 2rem 0;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Layout Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        @media (min-width: 900px) {
+            .content-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+
+        /* Product Demo Image */
+        .demo-container {
+            position: relative;
+            border-radius: 24px;
+            padding: 1rem;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            border: 1px solid var(--border);
+            box-shadow: 0 0 80px rgba(59, 130, 246, 0.15);
+        }
+        .demo-container img {
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+        }
+
+        /* App Workspace / Dropzone */
+        .workspace {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
             position: relative;
             overflow: hidden;
         }
+        .workspace::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: var(--gradient);
+        }
 
-
-        /* Dropzone */
         .dropzone {
             width: 100%;
-            max-width: 600px;
             padding: 4rem 2rem;
-            background: rgba(24, 24, 27, 0.5);
+            background: rgba(3, 3, 5, 0.5);
             border: 2px dashed var(--border);
             border-radius: 16px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.2s ease;
-            backdrop-filter: blur(10px);
-            position: relative;
+            transition: all 0.3s ease;
         }
-
         .dropzone:hover, .dropzone.dragover {
             border-color: var(--primary);
             background: rgba(59, 130, 246, 0.05);
+            box-shadow: 0 0 30px var(--primary-glow);
         }
-
-        .dropzone input[type="file"] {
-            display: none;
-        }
-
+        .dropzone input[type="file"] { display: none; }
+        
         .drop-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 1rem;
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .btn:hover {
-            background: var(--primary-hover);
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 16px;
+            transition: transform 0.2s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .feature-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Ads */
+        .ad-banner {
+            width: 100%;
+            max-width: 900px;
+            height: 90px;
+            margin: 4rem auto;
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
-        /* Results / Processing */
+        /* Results */
         #results {
             display: none;
-            width: 100%;
-            max-width: 600px;
             margin-top: 2rem;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
+            animation: fadeIn 0.5s ease;
         }
-
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         .stat-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
             margin: 1.5rem 0;
         }
-
         .stat-box {
             background: var(--bg);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            margin-bottom: 0.25rem;
-        }
-
-        .stat-val {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        /* Marketing */
-        .marketing-banner {
-            margin-top: 4rem;
-            background: var(--surface);
-            padding: 2rem;
+            padding: 1.25rem;
             border-radius: 12px;
             border: 1px solid var(--border);
+            text-align: left;
+        }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .stat-val { font-size: 1.75rem; font-weight: 800; font-family: var(--font-mono); color: var(--primary); margin-top: 0.5rem; }
+
+        .btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            width: 100%;
             text-align: center;
         }
-        .marketing-banner a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .marketing-banner a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Spinner */
-        .spinner {
-            display: none;
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255,255,255,0.1);
-            border-left-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .btn:hover { opacity: 0.9; }
 
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 4rem;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Karakorum</h1>
-        <p>Lightning-fast lossless file compression powered by Go.</p>
-    </header>
-
-    <main>
-        <!-- Top Ad Space -->
-        <div class="ad-slot" id="top-ad" style="flex-direction: column;">
-            <!-- Google AdSense Code Goes Here -->
-            <span>Advertisement Space</span>
-            <a href="mailto:summati@zohomail.in" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Advertise with us: summati@zohomail.in</a>
+    <nav>
+        <a href="#" class="nav-brand">
+            <img src="assets/logo.jpg" alt="Karakorum Logo">
+            KARAKORUM
+        </a>
+        <div class="nav-links">
+            <a href="#demo">Compress</a>
+            <a href="#features">Features</a>
+            <a href="https://github.com/summati/karakorum-ultimate-compression" target="_blank">API & CLI</a>
+            <a href="https://summati.gumroad.com/l/karakorum" target="_blank" style="color: var(--primary)">Buy Pro ($10)</a>
         </div>
+    </nav>
 
-        <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
-            <div class="spinner" id="spinner"></div>
-            <div id="drop-content">
-                <div class="drop-icon">🏔️</div>
-                <h2>Drag & Drop a file here</h2>
-                <p class="text-muted" style="margin-top:0.5rem; color:var(--text-muted)">or click to browse files</p>
-                <input type="file" id="fileInput" onchange="handleFiles(this.files)">
-            </div>
-        </div>
+    <div class="hero">
+        <h1>Redefining File<br>Compression.</h1>
+        <p>Experience up to 3500x lossless compression ratios instantly in your browser. Powered by an advanced pure Go engine.</p>
+    </div>
 
-        <div id="results">
-            <h2 style="text-align:center; color: #10b981">Compression Successful! 🎉</h2>
+    <!-- Top Ad -->
+    <div class="ad-banner" id="top-ad">
+        <span>Advertisement Space</span>
+        <a href="mailto:summati@zohomail.in" style="color: inherit; text-decoration: none; margin-top: 4px;">Advertise with us: summati@zohomail.in</a>
+    </div>
+
+    <div class="content-grid" id="demo">
+        <!-- Interactive UI -->
+        <div class="workspace">
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Web Compressor</h2>
             
-            <div class="stat-grid">
-                <div class="stat-box">
-                    <div class="stat-label">Original Size</div>
-                    <div class="stat-val" id="val-orig">--</div>
+            <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+                <div id="drop-content">
+                    <div class="drop-icon">📦</div>
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Drag & Drop files here</h3>
+                    <p style="color: var(--text-muted);">or click to browse from your device</p>
+                    <input type="file" id="fileInput" onchange="handleFiles(this.files)">
                 </div>
-                <div class="stat-box">
-                    <div class="stat-label">Compressed Size</div>
-                    <div class="stat-val" id="val-comp">--</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-label">Compression Ratio</div>
-                    <div class="stat-val" id="val-ratio">--</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-label">Space Saved</div>
-                    <div class="stat-val" id="val-saved">--</div>
+                <div id="spinner" style="display: none; padding: 2rem 0; color: var(--primary); font-weight: 600;">
+                    Compressing with Engine...
                 </div>
             </div>
 
-            <div style="text-align:center">
-                <a id="download-btn" class="btn" style="text-decoration:none; display:inline-block;">Download .kuc File</a>
+            <div id="results">
+                <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--success); font-weight: 600;">
+                    ✅ Compression Complete
+                </div>
+                
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-label">Original</div>
+                        <div class="stat-val" id="val-orig">--</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Compressed</div>
+                        <div class="stat-val" id="val-comp">--</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Ratio</div>
+                        <div class="stat-val" id="val-ratio">--</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-label">Saved</div>
+                        <div class="stat-val" id="val-saved">--</div>
+                    </div>
+                </div>
+
+                <a id="download-btn" class="btn">Download .kuc File</a>
             </div>
         </div>
 
-        <!-- Marketing CTA for CLI -->
-        <div class="marketing-banner">
-            <h3>Are you a developer?</h3>
-            <p style="margin-top:0.5rem; color:var(--text-muted);">
-                Get the Karakorum CLI to compress files locally, entirely offline, with zero limits. 
-                <br>API integration also available for businesses.
-            </p>
-            <p style="margin-top:1rem;">
-                <a href="https://github.com/summati/karakorum-ultimate-compression" target="_blank">View on GitHub</a>
-                &nbsp;|&nbsp;
-                <a href="https://summati.gumroad.com/l/karakorum" target="_blank">Buy Commercial License ($10)</a>
-            </p>
+        <!-- Product Image -->
+        <div class="demo-container">
+            <img src="assets/demo.jpg" alt="Karakorum Compression Engine Demonstration">
         </div>
-        
-        <!-- Bottom Ad Space -->
-        <div class="ad-slot" id="bottom-ad" style="flex-direction: column;">
-            <!-- Google AdSense Code Goes Here -->
-            <span>Advertisement Space</span>
-            <a href="mailto:summati@zohomail.in" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Advertise with us: summati@zohomail.in</a>
+    </div>
+
+    <!-- Features -->
+    <div class="features" id="features">
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Blazing Fast</h3>
+            <p>Written in pure Go, the engine processes massive files in milliseconds directly in memory.</p>
         </div>
-    </main>
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>100% Lossless</h3>
+            <p>Cryptographically verified with SHA-256 ensuring every single byte is perfectly recoverable.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💻</div>
+            <h3>CLI & API Access</h3>
+            <p>Integrate our engine into your own products or automate workflows with our robust offline CLI.</p>
+        </div>
+    </div>
+
+    <!-- Bottom Ad -->
+    <div class="ad-banner" id="bottom-ad">
+        <span>Advertisement Space</span>
+        <a href="mailto:summati@zohomail.in" style="color: inherit; text-decoration: none; margin-top: 4px;">Advertise with us: summati@zohomail.in</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Karakorum Compression. All rights reserved.</p>
+        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 2rem;">
+            <a href="https://github.com/summati/karakorum-ultimate-compression" style="color: var(--text-muted); text-decoration: none;">GitHub</a>
+            <a href="https://summati.gumroad.com/l/karakorum" style="color: var(--text-muted); text-decoration: none;">Purchase License</a>
+            <a href="mailto:summati@zohomail.in" style="color: var(--text-muted); text-decoration: none;">Contact</a>
+        </div>
+    </footer>
 
     <script>
         const dropzone = document.getElementById('dropzone');
@@ -276,23 +387,14 @@
         const dropContent = document.getElementById('drop-content');
         const results = document.getElementById('results');
 
-        // Drag & Drop visual effects
-        dropzone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropzone.classList.add('dragover');
-        });
+        dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
         dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
-        dropzone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropzone.classList.remove('dragover');
-            handleFiles(e.dataTransfer.files);
-        });
+        dropzone.addEventListener('drop', (e) => { e.preventDefault(); dropzone.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
 
         async function handleFiles(files) {
             if (files.length === 0) return;
             const file = files[0];
 
-            // UI Loading state
             dropContent.style.display = 'none';
             spinner.style.display = 'block';
             results.style.display = 'none';
@@ -301,26 +403,17 @@
             formData.append('file', file);
 
             try {
-                const response = await fetch('/api/v1/compress', {
-                    method: 'POST',
-                    body: formData
-                });
+                const response = await fetch('/api/v1/compress', { method: 'POST', body: formData });
+                if (!response.ok) throw new Error(await response.text());
 
-                if (!response.ok) {
-                    throw new Error(await response.text());
-                }
-
-                // Read stats from HTTP headers
                 const orig = response.headers.get('X-Original-Size');
                 const comp = response.headers.get('X-Compressed-Size');
                 const ratio = response.headers.get('X-Compression-Ratio');
                 const saved = response.headers.get('X-Space-Saved-Pct');
 
-                // Generate download link for the blob
                 const blob = await response.blob();
                 const downloadUrl = URL.createObjectURL(blob);
 
-                // Update UI
                 document.getElementById('val-orig').innerText = formatBytes(orig);
                 document.getElementById('val-comp').innerText = formatBytes(comp);
                 document.getElementById('val-ratio').innerText = ratio + 'x';
@@ -334,10 +427,9 @@
             } catch (err) {
                 alert('Compression failed: ' + err.message);
             } finally {
-                // Reset UI
                 dropContent.style.display = 'block';
                 spinner.style.display = 'none';
-                document.getElementById('fileInput').value = ''; // clear input
+                document.getElementById('fileInput').value = '';
             }
         }
 
