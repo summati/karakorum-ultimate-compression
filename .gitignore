@@ -1,0 +1,12 @@
+# Build output
+kuc
+*.kuc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
