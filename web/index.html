@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karakorum Ultimate Compression — Free Online File Compressor</title>
+    <meta name="description" content="Compress your files instantly with Karakorum. Up to 3500x ratio, lossless compression in your browser. Powered by pure Go.">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+        :root {
+            --bg: #09090b;
+            --surface: #18181b;
+            --border: #27272a;
+            --text: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Ad Slots */
+        .ad-slot {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .ad-slot::after {
+            content: "Advertisement Space";
+        }
+
+        /* Dropzone */
+        .dropzone {
+            width: 100%;
+            max-width: 600px;
+            padding: 4rem 2rem;
+            background: rgba(24, 24, 27, 0.5);
+            border: 2px dashed var(--border);
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .dropzone:hover, .dropzone.dragover {
+            border-color: var(--primary);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .dropzone input[type="file"] {
+            display: none;
+        }
+
+        .drop-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Results / Processing */
+        #results {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-box {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-val {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Marketing */
+        .marketing-banner {
+            margin-top: 4rem;
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .marketing-banner a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .marketing-banner a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Spinner */
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-left-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Karakorum</h1>
+        <p>Lightning-fast lossless file compression powered by Go.</p>
+    </header>
+
+    <main>
+        <!-- Top Ad Space -->
+        <div class="ad-slot" id="top-ad">
+            <!-- Google AdSense Code Goes Here -->
+        </div>
+
+        <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+            <div class="spinner" id="spinner"></div>
+            <div id="drop-content">
+                <div class="drop-icon">🏔️</div>
+                <h2>Drag & Drop a file here</h2>
+                <p class="text-muted" style="margin-top:0.5rem; color:var(--text-muted)">or click to browse files</p>
+                <input type="file" id="fileInput" onchange="handleFiles(this.files)">
+            </div>
+        </div>
+
+        <div id="results">
+            <h2 style="text-align:center; color: #10b981">Compression Successful! 🎉</h2>
+            
+            <div class="stat-grid">
+                <div class="stat-box">
+                    <div class="stat-label">Original Size</div>
+                    <div class="stat-val" id="val-orig">--</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Compressed Size</div>
+                    <div class="stat-val" id="val-comp">--</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Compression Ratio</div>
+                    <div class="stat-val" id="val-ratio">--</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-label">Space Saved</div>
+                    <div class="stat-val" id="val-saved">--</div>
+                </div>
+            </div>
+
+            <div style="text-align:center">
+                <a id="download-btn" class="btn" style="text-decoration:none; display:inline-block;">Download .kuc File</a>
+            </div>
+        </div>
+
+        <!-- Marketing CTA for CLI -->
+        <div class="marketing-banner">
+            <h3>Are you a developer?</h3>
+            <p style="margin-top:0.5rem; color:var(--text-muted);">
+                Get the Karakorum CLI to compress files locally, entirely offline, with zero limits. 
+                <br>API integration also available for businesses.
+            </p>
+            <p style="margin-top:1rem;">
+                <a href="https://github.com/summati/karakorum-ultimate-compression" target="_blank">View on GitHub</a>
+                &nbsp;|&nbsp;
+                <a href="https://summati.gumroad.com/l/karakorum" target="_blank">Buy Commercial License ($10)</a>
+            </p>
+        </div>
+        
+        <!-- Bottom Ad Space -->
+        <div class="ad-slot" id="bottom-ad">
+            <!-- Google AdSense Code Goes Here -->
+        </div>
+    </main>
+
+    <script>
+        const dropzone = document.getElementById('dropzone');
+        const spinner = document.getElementById('spinner');
+        const dropContent = document.getElementById('drop-content');
+        const results = document.getElementById('results');
+
+        // Drag & Drop visual effects
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.classList.add('dragover');
+        });
+        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        async function handleFiles(files) {
+            if (files.length === 0) return;
+            const file = files[0];
+
+            // UI Loading state
+            dropContent.style.display = 'none';
+            spinner.style.display = 'block';
+            results.style.display = 'none';
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/api/v1/compress', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(await response.text());
+                }
+
+                // Read stats from HTTP headers
+                const orig = response.headers.get('X-Original-Size');
+                const comp = response.headers.get('X-Compressed-Size');
+                const ratio = response.headers.get('X-Compression-Ratio');
+                const saved = response.headers.get('X-Space-Saved-Pct');
+
+                // Generate download link for the blob
+                const blob = await response.blob();
+                const downloadUrl = URL.createObjectURL(blob);
+
+                // Update UI
+                document.getElementById('val-orig').innerText = formatBytes(orig);
+                document.getElementById('val-comp').innerText = formatBytes(comp);
+                document.getElementById('val-ratio').innerText = ratio + 'x';
+                document.getElementById('val-saved').innerText = saved + '%';
+                
+                const dlBtn = document.getElementById('download-btn');
+                dlBtn.href = downloadUrl;
+                dlBtn.download = file.name + '.kuc';
+
+                results.style.display = 'block';
+            } catch (err) {
+                alert('Compression failed: ' + err.message);
+            } finally {
+                // Reset UI
+                dropContent.style.display = 'block';
+                spinner.style.display = 'none';
+                document.getElementById('fileInput').value = ''; // clear input
+            }
+        }
+
+        function formatBytes(bytes) {
+            if (!bytes || bytes == 0) return '0 B';
+            const k = 1024, dm = 2, sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+    </script>
+</body>
+</html>
