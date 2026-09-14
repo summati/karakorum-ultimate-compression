@@ -277,6 +277,46 @@
             </div>
         </div>
 
+        <!-- About Maker -->
+        <div class="card" id="about" style="margin-bottom: 4rem;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">About the Maker</h2>
+            <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1rem;">
+                        Hi, I'm Summati. I built Karakorum because I was frustrated with how slow traditional ZIP compression is when dealing with large datasets. I needed a tool that was fast, reliable, and didn't require me to install a bunch of dependencies.
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 1.05rem;">
+                        So, I wrote a custom engine in pure Go that runs entirely in memory. It's built for data engineers and power users who value speed and data integrity above all else.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQs -->
+        <div class="card" id="faqs" style="margin-bottom: 4rem;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main);">Is the web compressor really free?</h3>
+                <p style="color: var(--text-muted);">Yes, you can compress and decompress files directly in your browser completely for free. The Pro CLI is designed for developers who need to automate this process locally or on their own servers.</p>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main);">Do I need to install any dependencies for the CLI?</h3>
+                <p style="color: var(--text-muted);">No. Karakorum is a single, statically linked binary. You just download it and run it. No Node.js, Python, or external libraries required.</p>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main);">Is my data safe when using the web compressor?</h3>
+                <p style="color: var(--text-muted);">Absolutely. We use industry-standard HTTPS encryption for the transfer, and files are processed strictly in-memory by our engine. We do not store your files on disk.</p>
+            </div>
+            
+            <div>
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main);">What operating systems does the CLI support?</h3>
+                <p style="color: var(--text-muted);">We provide native binaries for Windows, macOS (Intel & Apple Silicon), and Linux.</p>
+            </div>
+        </div>
+
         <div class="ad-banner" id="bottom-ad">
             <span>Advertisement Space</span>
             <a href="mailto:summati@zohomail.in" style="color: inherit; text-decoration: none; margin-top: 4px;">Advertise with us: summati@zohomail.in</a>
