@@ -79,9 +79,7 @@
             position: relative;
             overflow: hidden;
         }
-        .ad-slot::after {
-            content: "Advertisement Space";
-        }
+
 
         /* Dropzone */
         .dropzone {
@@ -207,8 +205,10 @@
 
     <main>
         <!-- Top Ad Space -->
-        <div class="ad-slot" id="top-ad">
+        <div class="ad-slot" id="top-ad" style="flex-direction: column;">
             <!-- Google AdSense Code Goes Here -->
+            <span>Advertisement Space</span>
+            <a href="mailto:summati@zohomail.in" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Advertise with us: summati@zohomail.in</a>
         </div>
 
         <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
@@ -263,8 +263,10 @@
         </div>
         
         <!-- Bottom Ad Space -->
-        <div class="ad-slot" id="bottom-ad">
+        <div class="ad-slot" id="bottom-ad" style="flex-direction: column;">
             <!-- Google AdSense Code Goes Here -->
+            <span>Advertisement Space</span>
+            <a href="mailto:summati@zohomail.in" style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Advertise with us: summati@zohomail.in</a>
         </div>
     </main>
 
