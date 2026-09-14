@@ -223,18 +223,37 @@
         </div>
 
         <!-- Features -->
-        <div class="features-grid" id="features">
-            <div class="feature-block">
-                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> Pure Speed</h3>
-                <p>Built entirely in Go, the engine streams and compresses massive files directly in memory without disk I/O bottlenecks.</p>
+        <div class="features" id="features" style="padding: 6rem 0;">
+            <!-- Feature 1 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 6rem;">
+                <div>
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem;">Pure Speed</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem;">Built entirely in Go, the engine streams and compresses massive files directly in memory without disk I/O bottlenecks. Engineered for maximum throughput.</p>
+                    <ul style="color: var(--text-muted); padding-left: 1.25rem;">
+                        <li style="margin-bottom: 0.5rem;">Zero dependencies</li>
+                        <li style="margin-bottom: 0.5rem;">Cross-platform binary</li>
+                        <li>Sub-millisecond latency</li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="assets/speed.jpg" alt="Speed Illustration" style="width: 100%; border-radius: 16px; box-shadow: var(--shadow-lg); border: 1px solid var(--border);">
+                </div>
             </div>
-            <div class="feature-block">
-                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg> 100% Lossless</h3>
-                <p>Cryptographically secured. Every byte is verified using SHA-256 to ensure absolute data integrity upon decompression.</p>
-            </div>
-            <div class="feature-block">
-                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg> Simple CLI</h3>
-                <p>Deploy instantly via our single-binary CLI tool. Zero dependencies required. Compatible with Windows, Mac, and Linux.</p>
+
+            <!-- Feature 2 -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 2rem;">
+                <div style="order: 2;">
+                    <h2 style="font-size: 2rem; margin-bottom: 1rem;">100% Lossless Integrity</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem;">Cryptographically secured. Every byte is verified using SHA-256 to ensure absolute data integrity upon decompression. Your data is safe with us.</p>
+                    <ul style="color: var(--text-muted); padding-left: 1.25rem;">
+                        <li style="margin-bottom: 0.5rem;">SHA-256 Checksums</li>
+                        <li style="margin-bottom: 0.5rem;">Byte-for-byte exact restoration</li>
+                        <li>Automated validation headers</li>
+                    </ul>
+                </div>
+                <div style="order: 1;">
+                    <img src="assets/lossless.jpg" alt="Lossless Security Illustration" style="width: 100%; border-radius: 16px; box-shadow: var(--shadow-lg); border: 1px solid var(--border);">
+                </div>
             </div>
         </div>
 
