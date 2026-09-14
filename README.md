@@ -173,10 +173,11 @@ If Karakorum saved you disk space, give it a ⭐ — it helps others find it!
 
 | Use Case | Price |
 |----------|-------|
-| ✅ Personal / Evaluation (14 days) | **Free** |
+| ⏳ Evaluation (14 days) | **Free** |
+| ✅ Personal Use | **$5 / license** |
 | 💼 Commercial (company, product, client work) | **$10 / license** |
 
-**👉 [Purchase a Commercial License — $10](https://summati.gumroad.com/l/karakorum)**
+**👉 [Purchase a License (Personal $5 / Commercial $10)](https://summati.gumroad.com/l/karakorum)**
 
 One license = one developer or one project. No subscriptions.
 
