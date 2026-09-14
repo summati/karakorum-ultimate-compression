@@ -1,21 +1,52 @@
-MIT License
+Karakorum Ultimate Compression — Commercial License
+=====================================================
+Copyright (c) 2026 summati. All rights reserved.
 
-Copyright (c) 2026 summati
+DEFINITIONS
+-----------
+"Software" means the Karakorum Ultimate Compression source code,
+binaries, documentation, and associated files.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+"Personal Use" means use by a single individual for non-commercial,
+non-revenue-generating purposes on their own personal devices.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+"Commercial Use" means any use of the Software in a product, service,
+or workflow that generates revenue, is used within a company or
+organization, is distributed as part of a product, or is used on
+behalf of a client.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+PERSONAL USE (FREE)
+-------------------
+You may use, modify, and run this Software for Personal Use at no
+charge, provided you do not redistribute it or use it commercially.
+
+COMMERCIAL USE (PAID — $10 per license)
+----------------------------------------
+Any Commercial Use of this Software requires a valid purchased license.
+
+  Purchase here: https://summati.gumroad.com/l/karakorum
+
+One license covers one developer or one project.
+
+RESTRICTIONS
+------------
+You may NOT:
+  1. Use this Software commercially without a purchased license.
+  2. Redistribute, resell, or sublicense this Software.
+  3. Remove or alter this license notice.
+  4. Claim authorship or ownership of this Software.
+
+EVALUATION
+----------
+You may evaluate this Software for Commercial Use for up to 14 days
+without a license. After 14 days, a license must be purchased.
+
+DISCLAIMER
+----------
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DAMAGES ARISING
+FROM THE USE OF THIS SOFTWARE.
+
+CONTACT
+-------
+For licensing inquiries: github.com/summati

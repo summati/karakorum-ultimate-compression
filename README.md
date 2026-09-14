@@ -5,7 +5,8 @@
   </p>
   <p align="center">
     <a href="https://github.com/summati/karakorum-ultimate-compression/releases"><img src="https://img.shields.io/github/v/release/summati/karakorum-ultimate-compression?style=flat-square&color=blue" alt="Release"></a>
-    <a href="https://github.com/summati/karakorum-ultimate-compression/blob/main/LICENSE"><img src="https://img.shields.io/github/license/summati/karakorum-ultimate-compression?style=flat-square&color=green" alt="License"></a>
+    <a href="https://github.com/summati/karakorum-ultimate-compression/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Commercial%20%2410-orange?style=flat-square" alt="License"></a>
+    <a href="https://summati.gumroad.com/l/karakorum"><img src="https://img.shields.io/badge/buy%20license-%2410-brightgreen?style=flat-square&logo=gumroad" alt="Buy License"></a>
     <a href="https://github.com/summati/karakorum-ultimate-compression/stargazers"><img src="https://img.shields.io/github/stars/summati/karakorum-ultimate-compression?style=flat-square&color=yellow" alt="Stars"></a>
     <img src="https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat-square&logo=go" alt="Go Version">
     <img src="https://img.shields.io/badge/dependencies-zero-brightgreen?style=flat-square" alt="Zero deps">
@@ -170,4 +171,13 @@ If Karakorum saved you disk space, give it a ⭐ — it helps others find it!
 
 ## 📄 License
 
-[MIT](LICENSE) © 2026 summati
+| Use Case | Price |
+|----------|-------|
+| ✅ Personal / Evaluation (14 days) | **Free** |
+| 💼 Commercial (company, product, client work) | **$10 / license** |
+
+**👉 [Purchase a Commercial License — $10](https://summati.gumroad.com/l/karakorum)**
+
+One license = one developer or one project. No subscriptions.
+
+See [LICENSE](LICENSE) for full terms.
