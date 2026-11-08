@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4792459271273189" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Karakorum Compression</title>
+    <meta name="description" content="Learn about the engineering mission behind Karakorum Compression, our pure Go architecture, and our creator Shahrukh Ummati.">
+    <link rel="canonical" href="https://karakorum.onrender.com/about/">
+    <meta name="robots" content="index, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --bg-secondary: #f9fafb;
+            --border: #e5e7eb;
+            --text-main: #111827;
+            --text-muted: #4b5563;
+            --primary: #2563eb;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-sans); background: var(--bg); color: var(--text-main); line-height: 1.7; }
+        nav { padding: 1.25rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { font-weight: 700; font-size: 1.2rem; color: var(--text-main); text-decoration: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; margin-left: 1.5rem; font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--text-main); }
+        .container { max-width: 860px; margin: 3rem auto; padding: 0 1.5rem; }
+        h1 { font-size: 2.25rem; margin-bottom: 0.75rem; color: var(--text-main); font-weight: 700; }
+        h2 { font-size: 1.35rem; margin: 2rem 0 0.75rem; color: var(--text-main); font-weight: 600; }
+        p { margin-bottom: 1.2rem; color: var(--text-muted); }
+        .card-box { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0; }
+        footer { border-top: 1px solid var(--border); padding: 2.5rem 0; margin-top: 4rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 0.75rem; }
+        footer a:hover { color: var(--text-main); }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="nav-brand">Karakorum Compression</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/guides/">Guides</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>About Karakorum Compression</h1>
+        <p style="font-size: 1.15rem; color: var(--text-main); font-weight: 500;">
+            Karakorum is an ultra-fast, zero-dependency, in-memory lossless compression engine engineered in pure Go.
+        </p>
+
+        <h2>The Origin Story</h2>
+        <p>In modern high-throughput distributed systems, data storage and egress bandwidth are two of the largest operational expenses. Traditional archive formats like standard ZIP and TAR often suffer from heavy disk I/O bottlenecks, high CPU memory bloat, and rigid platform dependencies.</p>
+        <p>Karakorum was born out of the frustration of having to manage complex C-bindings, Python runtime overheads, or node modules simply to compress stream data on edge servers. We set out to build a lightweight, statically compiled tool that could compress multi-gigabyte log files and JSON payloads in memory with zero intermediate disk footprint.</p>
+
+        <h2>Our Core Engineering Principles</h2>
+        <div class="card-box">
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main);">1. Pure Go, Zero External Dependencies</h3>
+            <p style="margin-bottom: 0;">Karakorum compiles to a single, standalone binary across Linux, macOS (Intel & Apple Silicon), and Windows. There are no shared C libraries (CGO-free) or runtime interpreters required.</p>
+        </div>
+
+        <div class="card-box">
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main);">2. In-Memory Streaming Architecture</h3>
+            <p style="margin-bottom: 0;">By leveraging Go's memory-efficient buffer pooling (`sync.Pool`) and chunked streaming channels, Karakorum processes payload streams without ever needing temporary scratch files on disk. This delivers maximum throughput and guarantees privacy.</p>
+        </div>
+
+        <div class="card-box">
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main);">3. Absolute Lossless Data Integrity</h3>
+            <p style="margin-bottom: 0;">Every archive stream generated by the Karakorum engine is stamped with cryptographic SHA-256 validation headers. Upon decompression, byte-for-byte exact equality is strictly enforced.</p>
+        </div>
+
+        <h2>Meet the Creator</h2>
+        <p>Karakorum was designed and created by <strong>Shahrukh Ummati (Summati)</strong>, a software engineer and distributed systems enthusiast passionate about systems programming, Go, and high-performance cloud utilities.</p>
+        <p>The project is actively maintained as both an open-source contribution and an enterprise CLI utility used by developers globally.</p>
+
+        <h2>Contact & Contributions</h2>
+        <p>Have ideas for optimization, benchmark requests, or feedback? Check out our public GitHub repository or email us directly:</p>
+        <p>
+            <strong>Email:</strong> <a href="mailto:summati@zohomail.in" style="color: var(--primary);">summati@zohomail.in</a><br>
+            <strong>GitHub:</strong> <a href="https://github.com/summati/karakorum-ultimate-compression" target="_blank" rel="noopener" style="color: var(--primary);">github.com/summati/karakorum-ultimate-compression</a>
+        </p>
+    </div>
+
+    <footer>
+        <div class="container" style="margin: 0 auto;">
+            <p>&copy; 2026 Karakorum Compression • Engineered by Shahrukh Ummati.</p>
+            <div style="margin-top: 0.75rem;">
+                <a href="/">Home</a>
+                <a href="/guides/">Guides</a>
+                <a href="/about/">About Us</a>
+                <a href="/contact/">Contact</a>
+                <a href="/privacy/">Privacy Policy</a>
+                <a href="/terms/">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

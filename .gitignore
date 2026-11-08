@@ -1,6 +1,8 @@
 # Build output
 /kuc
+/server
 *.kuc
+test_api.txt
 
 # OS
 .DS_Store

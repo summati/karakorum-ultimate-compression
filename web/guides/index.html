@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4792459271273189" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Guides & Documentation — Karakorum Compression</title>
+    <meta name="description" content="Technical documentation, algorithmic tutorials, and performance benchmarks for lossless data compression and high-throughput systems programming.">
+    <link rel="canonical" href="https://karakorum.onrender.com/guides/">
+    <meta name="robots" content="index, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --bg-secondary: #f9fafb;
+            --border: #e5e7eb;
+            --text-main: #111827;
+            --text-muted: #4b5563;
+            --primary: #2563eb;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-sans); background: var(--bg); color: var(--text-main); line-height: 1.7; }
+        nav { padding: 1.25rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { font-weight: 700; font-size: 1.2rem; color: var(--text-main); text-decoration: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; margin-left: 1.5rem; font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--text-main); }
+        .container { max-width: 960px; margin: 3rem auto; padding: 0 1.5rem; }
+        h1 { font-size: 2.25rem; margin-bottom: 0.5rem; color: var(--text-main); font-weight: 700; }
+        .lead { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+        .guide-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        .guide-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: transform 0.2s, box-shadow 0.2s; }
+        .guide-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.06); }
+        .guide-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.25rem 0.5rem; border-radius: 4px; margin-bottom: 0.75rem; }
+        .tag-algo { background: rgba(37,99,235,0.1); color: #2563eb; }
+        .tag-arch { background: rgba(5,150,105,0.1); color: #059669; }
+        .tag-bench { background: rgba(139,92,246,0.1); color: #8b5cf6; }
+        .guide-title { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .guide-title a { color: var(--text-main); text-decoration: none; }
+        .guide-title a:hover { color: var(--primary); }
+        .guide-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+        .guide-meta { font-size: 0.8rem; color: #9ca3af; display: flex; gap: 1rem; }
+        footer { border-top: 1px solid var(--border); padding: 2.5rem 0; margin-top: 4rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
+        footer a { color: var(--text-muted); text-decoration: none; margin: 0 0.75rem; }
+        footer a:hover { color: var(--text-main); }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="nav-brand">Karakorum Compression</a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/guides/">Guides</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Engineering Guides & Documentation</h1>
+        <p class="lead">Deep-dive technical guides into modern lossless algorithms, in-memory Go systems programming, and high-throughput compression benchmarks.</p>
+
+        <div class="guide-grid">
+            <div class="guide-card">
+                <span class="guide-tag tag-algo">Computer Science & Algorithms</span>
+                <h2 class="guide-title"><a href="/guides/lossless-data-compression-explained/">How Lossless Compression Algorithms Work: Huffman Coding, RLE, and LZ77</a></h2>
+                <p class="guide-desc">Explore the mathematical foundations of entropy reduction, prefix trees, sliding-window search buffers, and run-length encoding techniques that power modern data compressors without losing a single bit of information.</p>
+                <div class="guide-meta">
+                    <span>⏱️ 12 min read</span>
+                    <span>📖 1,450 words</span>
+                    <span>👤 Shahrukh Ummati</span>
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <span class="guide-tag tag-arch">Systems Architecture</span>
+                <h2 class="guide-title"><a href="/guides/in-memory-go-compression-architecture/">In-Memory Go Streaming: Eliminating Disk I/O Bottlenecks at Scale</a></h2>
+                <p class="guide-desc">A deep dive into building production streaming engines in Go. Learn how Karakorum utilizes `sync.Pool` buffer recycling, zero-allocation byte slicing, and GC mitigation to compress multi-gigabyte streams at microsecond latencies.</p>
+                <div class="guide-meta">
+                    <span>⏱️ 10 min read</span>
+                    <span>📖 1,280 words</span>
+                    <span>👤 Shahrukh Ummati</span>
+                </div>
+            </div>
+
+            <div class="guide-card">
+                <span class="guide-tag tag-bench">Performance Engineering</span>
+                <h2 class="guide-title"><a href="/guides/kuc-vs-gzip-zip-benchmarks/">Empirical Benchmark: KUC vs Gzip vs Zstandard for Cloud Payloads</a></h2>
+                <p class="guide-desc">Detailed side-by-side benchmark measuring compression ratio, CPU core efficiency, memory footprint, and throughput (MB/s) across synthetic logs, structured JSON, and tabular CSV files.</p>
+                <div class="guide-meta">
+                    <span>⏱️ 9 min read</span>
+                    <span>📖 1,150 words</span>
+                    <span>👤 Shahrukh Ummati</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container" style="margin: 0 auto;">
+            <p>&copy; 2026 Karakorum Compression • All Rights Reserved.</p>
+            <div style="margin-top: 0.75rem;">
+                <a href="/">Home</a>
+                <a href="/guides/">Guides</a>
+                <a href="/about/">About Us</a>
+                <a href="/contact/">Contact</a>
+                <a href="/privacy/">Privacy Policy</a>
+                <a href="/terms/">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

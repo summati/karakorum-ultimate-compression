@@ -171,9 +171,10 @@
             Karakorum
         </a>
         <div class="nav-links">
-            <a href="#demo">Web App</a>
-            <a href="#api">API</a>
-            <a href="#features">Features</a>
+            <a href="/#demo">Web App</a>
+            <a href="/guides/">Guides & Docs</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
             <a href="https://github.com/summati/karakorum-ultimate-compression" target="_blank">GitHub</a>
             <a href="https://karakoram.gumroad.com/l/karakoram" class="btn-buy" target="_blank">Get CLI Pro</a>
         </div>
@@ -183,11 +184,6 @@
         <div class="hero">
             <h1>Engineered for speed.</h1>
             <p>ZIP-level lossless compression. Zero dependencies. In-memory execution. Designed for the modern enterprise.</p>
-        </div>
-
-        <div class="ad-banner" id="top-ad">
-            <span>Advertisement Space</span>
-            <a href="mailto:summati@zohomail.in" style="color: inherit; text-decoration: none; margin-top: 4px;">Advertise with us: summati@zohomail.in</a>
         </div>
 
         <!-- Web Compressor Panel -->
@@ -316,21 +312,55 @@
                 <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-main);">What operating systems does the CLI support?</h3>
                 <p style="color: var(--text-muted);">We provide native binaries for Windows, macOS (Intel & Apple Silicon), and Linux.</p>
             </div>
-        </div>
+        <!-- Technical Knowledge Hub & Engineering Docs -->
+        <div class="card" id="guides-preview" style="margin-bottom: 4rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h2 style="font-size: 1.5rem; margin-bottom: 0.25rem;">Engineering Guides & Technical Documentation</h2>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">In-depth guides on lossless algorithms, streaming architectures, and compression benchmarks.</p>
+                </div>
+                <a href="/guides/" class="btn" style="background: var(--text-main); font-size: 0.85rem; padding: 0.5rem 1rem;">View All Guides &rarr;</a>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;">
+                    <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary); text-transform: uppercase;">Algorithms</span>
+                    <h3 style="font-size: 1.1rem; margin: 0.5rem 0; font-weight: 600;"><a href="/guides/lossless-data-compression-explained/" style="color: inherit; text-decoration: none;">How Lossless Compression Works: Huffman vs LZ77</a></h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">An engineering deep-dive into entropy encoding, frequency trees, and dictionary sliding windows.</p>
+                    <a href="/guides/lossless-data-compression-explained/" style="display: inline-block; margin-top: 0.75rem; color: var(--primary); font-size: 0.85rem; font-weight: 600; text-decoration: none;">Read Guide &rarr;</a>
+                </div>
 
-        <div class="ad-banner" id="bottom-ad">
-            <span>Advertisement Space</span>
-            <a href="mailto:summati@zohomail.in" style="color: inherit; text-decoration: none; margin-top: 4px;">Advertise with us: summati@zohomail.in</a>
+                <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;">
+                    <span style="font-size: 0.75rem; font-weight: 700; color: var(--success); text-transform: uppercase;">Architecture</span>
+                    <h3 style="font-size: 1.1rem; margin: 0.5rem 0; font-weight: 600;"><a href="/guides/in-memory-go-compression-architecture/" style="color: inherit; text-decoration: none;">In-Memory Go Streaming for Large Datasets</a></h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">How Karakorum achieves zero disk I/O bottlenecks with buffer pooling and garbage collector tuning.</p>
+                    <a href="/guides/in-memory-go-compression-architecture/" style="display: inline-block; margin-top: 0.75rem; color: var(--primary); font-size: 0.85rem; font-weight: 600; text-decoration: none;">Read Guide &rarr;</a>
+                </div>
+
+                <div style="background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;">
+                    <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-main); text-transform: uppercase;">Benchmarks</span>
+                    <h3 style="font-size: 1.1rem; margin: 0.5rem 0; font-weight: 600;"><a href="/guides/kuc-vs-gzip-zip-benchmarks/" style="color: inherit; text-decoration: none;">Benchmark: KUC vs Gzip vs Zstandard</a></h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">Empirical throughput measurements, compression ratios, and memory footprints across test payloads.</p>
+                    <a href="/guides/kuc-vs-gzip-zip-benchmarks/" style="display: inline-block; margin-top: 0.75rem; color: var(--primary); font-size: 0.85rem; font-weight: 600; text-decoration: none;">Read Guide &rarr;</a>
+                </div>
+            </div>
         </div>
     </div>
 
     <footer>
         <div class="container">
-            <p style="margin-bottom: 1rem;">&copy; 2026 Karakorum Compression.</p>
-            <div>
+            <p style="margin-bottom: 0.75rem; font-weight: 600; color: var(--text-main);">&copy; 2026 Karakorum Compression • High-Throughput Lossless Compression Engine.</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); max-width: 650px; margin: 0 auto 1.5rem;">
+                Files processed via our interactive compressor are handled strictly in-memory and immediately discarded. No user data is ever written to persistent disk storage.
+            </p>
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem 1.5rem; font-size: 0.9rem;">
+                <a href="/guides/">Documentation</a>
+                <a href="/about/">About Us</a>
+                <a href="/contact/">Contact & Support</a>
+                <a href="/privacy/">Privacy Policy</a>
+                <a href="/terms/">Terms of Service</a>
                 <a href="https://github.com/summati/karakorum-ultimate-compression" target="_blank">GitHub</a>
-                <a href="https://karakoram.gumroad.com/l/karakoram" target="_blank">CLI License ($10)</a>
-                <a href="mailto:summati@zohomail.in">Contact</a>
+                <a href="https://karakoram.gumroad.com/l/karakoram" target="_blank">CLI Pro ($10)</a>
             </div>
         </div>
     </footer>
